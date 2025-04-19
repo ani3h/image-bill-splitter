@@ -3,3 +3,4 @@
 *png
 *HEIC
 .DS_Store
+__pycache__
