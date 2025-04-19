@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload Bill{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Upload Bill Image</h2>
+<p>Upload a clear image of your restaurant bill. The app will extract the items, taxes, and total.</p>
+
+<form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="bill_image" class="form-label">Bill Image</label>
+        <input type="file" class="form-control" id="bill_image" name="bill_image" accept="image/*" required>
+    </div>
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Upload and Process</button>
+    </div>
+</form>
+{% endblock %}

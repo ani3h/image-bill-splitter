@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Bill Splitter - Home{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h2 class="mb-4">Welcome to Bill Splitter</h2>
+    <p class="lead">Upload a restaurant bill image, assign food items to people, and get a fair split of the bill.</p>
+    
+    <div class="d-grid gap-2 col-6 mx-auto mt-5">
+        <a href="{{ url_for('upload_bill') }}" class="btn btn-primary btn-lg">Start Splitting a Bill</a>
+    </div>
+</div>
+{% endblock %}

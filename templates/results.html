@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Bill Split Results{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Bill Split Results</h2>
+
+<div class="card mb-4">
+    <div class="card-header">
+        Total Bill Breakdown
+    </div>
+    <div class="card-body">
+        <p><strong>Items Total:</strong> ${{ "%.2f"|format(total_before_tax) }}</p>
+        <p><strong>Taxes:</strong> ${{ "%.2f"|format(total_tax) }}</p>
+        <p><strong>Bill Total:</strong> ${{ "%.2f"|format(bill_data.total) }}</p>
+    </div>
+</div>
+
+<h3>Each Person Owes:</h3>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Person</th>
+                <th>Amount</th>
+                <th>Items</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for person in people %}
+            <tr>
+                <td>{{ person }}</td>
+                <td>${{ "%.2f"|format(amounts[person]) }}</td>
+                <td>
+                    {% for item, assigned_people in assignments.items() %}
+                        {% if person in assigned_people %}
+                            <span class="badge bg-primary person-badge">{{ item }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="d-grid gap-2 mt-4">
+    <a href="{{ url_for('start_new') }}" class="btn btn-primary">Split Another Bill</a>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Assign Items{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Assign Items to People</h2>
+<p>Select who ate each item by checking the boxes.</p>
+
+<form method="POST">
+    {% for item_name, item_details in bill_data.items.items() %}
+    <div class="item-card">
+        <h5>{{ item_name }}</h5>
+        <p>Quantity: {{ item_details.qty }} | Amount: ${{ item_details.amount }}</p>
+        
+        <div class="mb-3">
+            <label class="form-label">Who had this?</label>
+            <div>
+                {% for person in people %}
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="{{ item_name }}_{{ person }}" 
+                           name="item_{{ item_name }}" value="{{ person }}"
+                           {% if person in assignments.get(item_name, []) %}checked{% endif %}>
+                    <label class="form-check-label" for="{{ item_name }}_{{ person }}">{{ person }}</label>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+    <div class="d-grid gap-2 mt-4">
+        <button type="submit" class="btn btn-primary">Calculate Split</button>
+    </div>
+</form>
+{% endblock %}

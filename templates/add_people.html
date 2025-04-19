@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Add People{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Add People to Split the Bill</h2>
+
+<div class="card mb-4">
+    <div class="card-header">
+        Bill Summary
+    </div>
+    <div class="card-body">
+        <p><strong>Items:</strong> {{ bill_data.items|length }}</p>
+        <p><strong>Total:</strong> ${{ bill_data.total }}</p>
+        {% if bill_data.taxes %}
+        <p><strong>Taxes:</strong> 
+            {% for tax_name, tax_amount in bill_data.taxes.items() %}
+                {{ tax_name }}: ${{ tax_amount }}
+            {% endfor %}
+        </p>
+        {% endif %}
+    </div>
+</div>
+
+<form method="POST">
+    <div class="mb-3">
+        <label for="people" class="form-label">Enter Names (comma separated)</label>
+        <input type="text" class="form-control" id="people" name="people" 
+               placeholder="e.g. John, Jane, Alex" required>
+        <div class="form-text">Enter the names of people who will split this bill, separated by commas.</div>
+    </div>
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Continue to Assign Items</button>
+    </div>
+</form>
+{% endblock %}
