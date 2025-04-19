@@ -39,8 +39,3 @@ def extract_text(image_path):
     extract_text = pytesseract.image_to_string(blurred, lang='eng')
 
     return extract_text
-
-
-# output_path = convert_to_jpg("IMG_9358.HEIC")
-text = extract_text("bill4.jpeg")
-print(text)
