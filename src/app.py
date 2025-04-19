@@ -5,8 +5,8 @@ from datetime import datetime
 from werkzeug.utils import secure_filename
 
 # Import your existing bill parsing functions
-from imageprocessing import extract_text
-from billparsing import extract_invoice_data
+from src.imageprocessing import extract_text
+from src.billparsing import extract_invoice_data
 
 app = Flask(__name__)
 app.secret_key = 'bill_splitter_secret_key'  # Required for session
