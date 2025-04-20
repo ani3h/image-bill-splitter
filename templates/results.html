@@ -10,9 +10,9 @@
         Total Bill Breakdown
     </div>
     <div class="card-body">
-        <p><strong>Items Total:</strong> ${{ "%.2f"|format(total_before_tax) }}</p>
-        <p><strong>Taxes:</strong> ${{ "%.2f"|format(total_tax) }}</p>
-        <p><strong>Bill Total:</strong> ${{ "%.2f"|format(bill_data.total) }}</p>
+        <p><strong>Items Total:</strong> ₹{{ "%.2f"|format(total_before_tax) }}</p>
+        <p><strong>Taxes:</strong> ₹{{ "%.2f"|format(total_tax) }}</p>
+        <p><strong>Bill Total:</strong> ₹{{ "%.2f"|format(bill_data.total) }}</p>
     </div>
 </div>
 
@@ -30,7 +30,7 @@
             {% for person in people %}
             <tr>
                 <td>{{ person }}</td>
-                <td>${{ "%.2f"|format(amounts[person]) }}</td>
+                <td>₹{{ "%.2f"|format(amounts[person]) }}</td>
                 <td>
                     {% for item, assigned_people in assignments.items() %}
                         {% if person in assigned_people %}

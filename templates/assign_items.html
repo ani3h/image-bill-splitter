@@ -7,10 +7,10 @@
 <p>Select who ate each item by checking the boxes.</p>
 
 <form method="POST">
-    {% for item_name, item_details in bill_data.items.items() %}
+    {% for item_name, item_details in bill_data['items'].items() %}
     <div class="item-card">
         <h5>{{ item_name }}</h5>
-        <p>Quantity: {{ item_details.qty }} | Amount: ${{ item_details.amount }}</p>
+        <p>Quantity: {{ item_details.qty }} | Amount: ₹{{ item_details.amount }}</p>
         
         <div class="mb-3">
             <label class="form-label">Who had this?</label>

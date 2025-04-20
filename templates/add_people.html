@@ -10,12 +10,13 @@
         Bill Summary
     </div>
     <div class="card-body">
-        <p><strong>Items:</strong> {{ bill_data.items|length }}</p>
-        <p><strong>Total:</strong> ${{ bill_data.total }}</p>
-        {% if bill_data.taxes %}
+        <!-- Access items as a dictionary key, not as an attribute -->
+        <p><strong>Items:</strong> {{ bill_data['items']|length if bill_data['items'] is defined else 0 }}</p>
+        <p><strong>Total:</strong> ₹{{ bill_data.total }}</p>
+        {% if bill_data['taxes'] is defined and bill_data['taxes'] %}
         <p><strong>Taxes:</strong> 
-            {% for tax_name, tax_amount in bill_data.taxes.items() %}
-                {{ tax_name }}: ${{ tax_amount }}
+            {% for tax_name, tax_amount in bill_data['taxes'].items() %}
+                {{ tax_name }}: ₹{{ tax_amount }}
             {% endfor %}
         </p>
         {% endif %}
