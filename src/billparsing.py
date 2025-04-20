@@ -43,10 +43,10 @@ def clean_invoice_text(text):
 # Function to extract items, taxes, and total information from the invoice text
 def extract_invoice_data(text):
     lines = clean_invoice_text(text)
-    items = {}
-    taxes = {}
-    total = None
-    subtotal = None
+    items = {}  # Initialize as empty dictionary
+    taxes = {}  # Initialize as empty dictionary
+    total = 0   # Default to 0 instead of None
+    subtotal = 0  # Default to 0 instead of None
 
     # Regex patterns for full item lines and taxes/total
     # Updated item pattern to be more flexible
@@ -133,6 +133,14 @@ def extract_invoice_data(text):
     # If we have a subtotal but no total, use the subtotal as total
     if not total and subtotal:
         total = subtotal
+
+    # Final check to ensure everything is the right type
+    if not isinstance(items, dict):
+        items = {}
+    if not isinstance(taxes, dict):
+        taxes = {}
+    if total is None:
+        total = 0
 
     return {
         "items": items,
